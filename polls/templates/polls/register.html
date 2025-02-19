@@ -1,0 +1,18 @@
+{% extends "polls/base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-header">
+    <h2 class="mb-0">Регистрация</h2>
+  </div>
+  <div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+    </form>
+  </div>
+  <div class="card-footer text-center">
+    <p class="mb-0">Уже зарегистрированы? <a href="{% url 'login' %}">Войти</a></p>
+  </div>
+</div>
+{% endblock %}

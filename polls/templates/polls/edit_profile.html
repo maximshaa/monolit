@@ -1,0 +1,22 @@
+{% extends "polls/base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-header">
+    <h2 class="card-title mb-0">Редактирование профиля</h2>
+  </div>
+  <div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-4">
+        <h5>Данные пользователя</h5>
+        {{ user_form.as_p }}
+      </div>
+      <div class="mb-4">
+        <h5>Профиль</h5>
+        {{ profile_form.as_p }}
+      </div>
+      <button type="submit" class="btn btn-success">Сохранить изменения</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

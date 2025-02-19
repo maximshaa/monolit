@@ -1,0 +1,16 @@
+{% extends "polls/base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-header">
+    <h2 class="mb-0">Удаление профиля</h2>
+  </div>
+  <div class="card-body">
+    <p>Вы уверены, что хотите удалить свой профиль? Это действие необратимо.</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger me-2">Удалить профиль</button>
+      <a href="{% url 'polls:profile' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

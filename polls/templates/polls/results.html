@@ -1,7 +1,22 @@
-<h1>{{ question.question_text }}</h1>
-<ul>
-    {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{choice.votes|pluralize}}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'polls:detail'  question.id %}">выбрать еще раз? </a>
+{% extends "polls/base.html" %}
+{% load extras %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-header">
+    <h1 class="card-title mb-0">{{ question.question_text }}</h1>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      {% for choice in question.choice_set.all %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ choice.choice_text }}
+          <span>
+            <span class="badge bg-primary me-2">{{ choice.votes }} голосов</span>
+            ({{ percentages|get_item:choice.id }}%)
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

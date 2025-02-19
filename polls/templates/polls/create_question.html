@@ -1,0 +1,33 @@
+{% extends "polls/base.html" %}
+
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-header">
+    <h2 class="mb-0">Создание вопроса</h2>
+  </div>
+  <div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <!-- Данные вопроса -->
+      <fieldset class="mb-4">
+        <legend class="h5">Данные вопроса</legend>
+        {{ form.as_p }}
+      </fieldset>
+      
+      <!-- Варианты ответов -->
+      <fieldset class="mb-4">
+        <legend class="h5">Варианты ответов</legend>
+        {{ formset.management_form }}
+        {% for form in formset %}
+          <div class="border rounded p-3 mb-3">
+            {{ form.as_p }}
+          </div>
+        {% endfor %}
+      </fieldset>
+      
+      <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
